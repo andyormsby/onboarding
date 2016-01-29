@@ -1,0 +1,43 @@
+<apex:page standardController="Account" extensions="AccountEditExtension">
+    <apex:form >        
+        <apex:sectionHeader title="Account Edit" subtitle="{!account.Name}"/>
+    	<apex:pageBlock title="Account Edit" mode="edit">
+            <apex:pageBlockButtons >
+				<apex:commandButton action="{!save}" value="Save"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+			<apex:pageBlockSection title="Client Information" columns="2" collapsible="false">
+
+				<apex:inputField value="{!account.accountNumber}"/>
+				<apex:inputField value="{!account.site}"/>
+				<apex:inputField value="{!account.type}"/>
+				<apex:inputField value="{!account.industry}"/>
+
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="Address Information" columns="2" collapsible="false">
+                <apex:inputField value="{!account.BillingStreet}" />
+        		<apex:inputField value="{!account.BillingCity}" />
+        		<apex:inputField value="{!account.BillingState}" />
+        		<apex:inputField value="{!account.BillingCountry}" />
+        		<apex:inputField value="{!account.BillingPostalCode}" /> 
+            </apex:pageBlockSection>
+
+			<apex:outputPanel id="region">
+				<apex:pageBlockSection title="Regional Information" columns="2" rendered="{!account.Region__c != ''}" 
+										collapsible="false">
+                    <apex:repeat value="{!fields}" var="f">
+                        <apex:inputField value="{!custom[f]}"/> 
+                    </apex:repeat>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+
+
+			<apex:pageBlockSection title="Description" columns="1" collapsible="false">
+				<apex:inputField value="{!account.description}"/>
+			</apex:pageBlockSection>
+
+
+		</apex:pageBlock>
+    </apex:form>
+</apex:page>

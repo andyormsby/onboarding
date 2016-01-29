@@ -1,0 +1,14 @@
+<apex:page standardController="Account" extensions="RegionControllerExtension">
+	<apex:pageBlock title="{!account.Region__c} Regional Information">
+        <apex:pageBlockSection rendered="{!account.Region__c != ''}">
+            <apex:repeat value="{!fields}" var="f">
+                <apex:outputField value="{!custom[f]}"/> 
+            </apex:repeat>
+    	</apex:pageBlockSection>
+        <apex:pageMessage summary="No region-specific information for this account."
+                          rendered="{!account.Region__c == null}"
+                          severity="warning"
+                          strength="3">
+        </apex:pageMessage>
+	</apex:pageBlock>
+</apex:page>
